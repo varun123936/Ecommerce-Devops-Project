@@ -1,0 +1,15 @@
+# Terraform artifacts (ignore everywhere)
+**/.terraform/
+**/terraform.tfstate
+**/terraform.tfstate.*
+**/.terraform.tfstate.lock.info
+
+# Node.js / Angular / DevOps common ignores
+node_modules/
+dist/
+build/
+.env
+*.log
+.vscode/
+.idea/
+coverage/
