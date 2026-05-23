@@ -105,13 +105,26 @@ resource "aws_subnet" "private2" {
 ############################
 
 resource "aws_eip" "nat" {
-  domain = "vpc"
+  domain            = "vpc"
+  depends_on        = [aws_internet_gateway.igw]
+  
+  tags = {
+    Name = "nat-eip"
+  }
 }
 
 resource "aws_nat_gateway" "nat" {
-
   allocation_id = aws_eip.nat.id
   subnet_id     = aws_subnet.public1.id
+
+  depends_on = [
+    aws_internet_gateway.igw,
+    aws_eip.nat
+  ]
+
+  tags = {
+    Name = "nat-gateway"
+  }
 }
 
 ############################
@@ -157,10 +170,13 @@ resource "aws_route_table_association" "priv1" {
 }
 
 resource "aws_route_table_association" "priv2" {
-
   subnet_id      = aws_subnet.private2.id
   route_table_id = aws_route_table.private.id
 }
+
+############################
+# SECURITY GROUP
+############################
 
 resource "aws_security_group" "allow_all" {
 
