@@ -132,4 +132,8 @@ kubectl get ingress -n google
 - mysql -h rds-endpoint -u admin -p<veerasir> < test.sql
 
 
+aws eks update-kubeconfig \
+  --region us-east-1 \
+  --name naresh
+  
 **Last Updated:** March 2026

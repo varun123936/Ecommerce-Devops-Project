@@ -13,7 +13,7 @@ resource "aws_db_instance" "rds" {
   password                    = "Cloud123"
   skip_final_snapshot         = true
   vpc_security_group_ids      = [aws_security_group.allow_all.id]
-  publicly_accessible         = false
+  publicly_accessible         = true
   backup_retention_period     = 0
   deletion_protection         = false
   
